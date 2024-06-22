@@ -8,6 +8,13 @@ import axios from "axios";
 import { useEffect, useState } from "react";
 
 const LeftNav = () => {
+  const links = [
+    {
+      title: "Home",
+      icon: <Home />,
+      path: "/",
+    },
+  ];
   const [tags, setTags] = useState([]);
   const baseUrl = import.meta.env.VITE_SERVER_URL;
   const [loading, setLoading] = useState(true);
@@ -37,35 +44,35 @@ const LeftNav = () => {
 
   return (
     <div className="col-span-1 rounded-md">
-      <div className="fixed ">
-        <div className=" px-4 py-6 flex flex-col gap-4">
+      <div className="fixed">
+        <div className="px-4 py-6 flex flex-col gap-4">
           <div className="text-center">
             <button
               onClick={backNavigate}
               className="bg-orange-500 text-slate-200 p-1 rounded-md ms-2"
             >
-              <BackArrow></BackArrow>
+              <BackArrow />
             </button>
 
             <button
               onClick={forwardNavigate}
-              className="bg-orange-500 text-slate-200 p-1 rounded-md  ms-2"
+              className="bg-orange-500 text-slate-200 p-1 rounded-md ms-2"
             >
-              <ForwardArrow></ForwardArrow>
+              <ForwardArrow />
             </button>
           </div>
 
           <ul>
-            <li
-              className={`bg-slate-500 hover:bg-opacity-50 hover:text-emerald-500 transition rounded-md cursor-pointer `}
-            >
-              <Link
-                to={"/"}
-                className="flex gap-1 items-center align-middle justify-center"
+            {links.map((l, i) => (
+              <li
+                key={`link.${i}`}
+                className="bg-slate-500 hover:bg-opacity-50 hover:text-emerald-500 transition rounded-md cursor-pointer"
               >
-                <Home /> Home
-              </Link>
-            </li>
+                <Link to={l.path} className="flex items-center gap-2 px-2 py-1">
+                  {l.icon} {l.title}
+                </Link>
+              </li>
+            ))}
           </ul>
 
           {loading ? (
@@ -77,16 +84,15 @@ const LeftNav = () => {
               ) : (
                 <ul>
                   <li className="text-orange-500 font-bold flex items-center gap-2">
-                    Trending Tags <Fire></Fire>
+                    Trending Tags <Fire />
                   </li>
 
                   {tags.map((t, i) => (
-                    <li
-                      key={`tag-${i}`}
-                      className="hover:bg-orange-500 rounded-md hover:bg-opacity-70 cursor-pointer transition"
-                    >
-                      #{t.name}
-                    </li>
+                    <Link key={`tag-${i}`} to={`/posts/${t.name}`}>
+                      <li className="hover:bg-orange-500 rounded-md hover:bg-opacity-70 cursor-pointer transition">
+                        #{t.name}
+                      </li>
+                    </Link>
                   ))}
                 </ul>
               )}

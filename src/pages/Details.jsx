@@ -52,7 +52,7 @@ const Details = () => {
         <p className="text-lg">{post.content}</p>
 
         <div>
-          <span className="bg-orange-500 text-slate-200 p-1 rounded-md">
+          <span className="bg-emerald-500 text-slate-200 p-1 rounded-md">
             {post.category.name}
           </span>
         </div>
@@ -60,7 +60,7 @@ const Details = () => {
         <ul className="flex flex-wrap gap-2">
           {post.tags.map((t, i) => (
             <li key={`tag-${i}`}>
-              <span className="bg-emerald-500 text-slate-200 p-1 rounded-md">
+              <span className="bg-orange-500 text-slate-200 p-1 rounded-md">
                 {" "}
                 #{t.name}
               </span>

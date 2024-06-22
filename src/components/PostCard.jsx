@@ -31,10 +31,10 @@ const PostCard = ({
       <div className="col-span-5 p-4">
         {/* Titolo e contenuto */}
         <div className="mb-4 flex justify-between items-center">
-          <h3 className="text-lg font-bold text-emerald-500 ">{title}</h3>
+          <h3 className="text-2xl font-bold text-emerald-500 ">{title}</h3>
 
-          <Link to={`/posts/${slug}`}>
-            <Info className="text-2xl text-orange-500"></Info>
+          <Link to={`/posts/details/${slug}`}>
+            <Info className="text-2xl text-orange-400"></Info>
           </Link>
         </div>
 
@@ -76,7 +76,9 @@ const PostCard = ({
             <span className="text-slate-200">Username</span>
           </div>
 
-          <div>{category}</div>
+          <div className="bg-emerald-500 text-slate-200 p-1 rounded-md">
+            {category}
+          </div>
         </div>
       </div>
 
@@ -85,7 +87,9 @@ const PostCard = ({
         {/* Tags */}
         <ul>
           {tags.map((t, i) => (
-            <li key={`tag${i}`}>#{t.name}</li>
+            <li key={`tag${i}`} className="text-orange-400">
+              #{t.name}
+            </li>
           ))}
         </ul>
       </div>

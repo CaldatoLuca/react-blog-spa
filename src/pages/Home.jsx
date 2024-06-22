@@ -7,6 +7,7 @@ const Home = () => {
   const baseUrl = import.meta.env.VITE_SERVER_URL;
   const [posts, setPosts] = useState([]);
   const [loading, setLoading] = useState(true);
+  const [searchQuery, setSearchQuery] = useState("");
 
   const fetchPosts = async () => {
     try {
@@ -23,13 +24,17 @@ const Home = () => {
     fetchPosts();
   }, []);
 
+  const filteredPosts = posts.filter((post) =>
+    post.title.toLowerCase().includes(searchQuery.toLowerCase())
+  );
+
   return (
     <div className="col-span-6">
-      <SearchBar />
+      <SearchBar setSearchQuery={setSearchQuery} />
       {loading ? (
         <p className="w-full text-center">Loading posts...</p>
       ) : (
-        <PostList posts={posts} />
+        <PostList posts={filteredPosts} />
       )}
     </div>
   );

@@ -17,7 +17,7 @@ const Header = () => {
         <nav>
           <ul className="flex items-center gap-5 text-slate-200">
             <li className="hover:bg-opacity-80 transition cursor-pointer bg-emerald-500 rounded-md px-3 py-1">
-              Log In
+              <Link to={"/access/login"}>Log In</Link>
             </li>
             <li className="hover:text-emerald-300 transition cursor-pointer ">
               Sign Up
